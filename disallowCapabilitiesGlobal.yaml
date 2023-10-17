@@ -1,7 +1,7 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: K8sPSPPrivilegedContainer
+kind: K8sPSPCapabilities
 metadata:
-  name: disallow-privileged-container-global
+  name: disallow-capabilities-global
 spec:
   enforcementAction: deny
   match:
@@ -44,3 +44,7 @@ spec:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
+  #If you want to add capabilities uncomment the lines below and adapt to your needs.
+  #parameters:
+  #  allowedCapabilities: ["something"]
+  #  requiredDropCapabilities: ["must_drop"]

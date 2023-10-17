@@ -1,7 +1,7 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: K8sPSPPrivilegedContainer
+kind: K8sPSPReadOnlyRootFilesystem
 metadata:
-  name: disallow-privileged-container-global
+  name: enforce-read-only-rootfs-global
 spec:
   enforcementAction: deny
   match:

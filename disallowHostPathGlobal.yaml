@@ -1,7 +1,7 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: K8sPSPPrivilegedContainer
+kind: K8sPSPHostFilesystem
 metadata:
-  name: disallow-privileged-container-global
+  name: disallow-hostpath-global
 spec:
   enforcementAction: deny
   match:

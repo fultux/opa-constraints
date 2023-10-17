@@ -1,7 +1,7 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: K8sPSPPrivilegedContainer
+kind: K8sPSPHostNetworkingPorts
 metadata:
-  name: disallow-privileged-container-global
+  name: enforce-hostnetwork-global
 spec:
   enforcementAction: deny
   match:
@@ -44,3 +44,8 @@ spec:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
+#If you want to enable ports uncomment the line below
+#  parameters:
+#    hostNetwork: true
+#    min: 22
+#    max: 10000

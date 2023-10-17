@@ -1,9 +1,8 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: K8sPSPPrivilegedContainer
+kind: K8sPSPSeccomp
 metadata:
-  name: disallow-privileged-container-global
+  name: enforce-seccomp-global
 spec:
-  enforcementAction: deny
   match:
     excludedNamespaces: 
       - calico-apiserver
@@ -42,5 +41,10 @@ spec:
       - security-scan
       - tigera-operator
     kinds:
-      - apiGroups: [""]
-        kinds: ["Pod"]
+      - apiGroups:
+          - '*'
+  parameters:
+    allowedProfiles:
+      - runtime/default
+      - docker/default
+

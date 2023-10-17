@@ -1,7 +1,7 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: K8sPSPPrivilegedContainer
+kind: K8sPSPForbiddenSysctls
 metadata:
-  name: disallow-privileged-container-global
+  name: disallow-sysctl-global
 spec:
   enforcementAction: deny
   match:
@@ -44,3 +44,10 @@ spec:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
+#By default every sysctl are disable if you want to fine-tune it to enable some use the example in comments below
+#  parameters:
+#    forbiddenSysctls:
+#    # - "*" # * may be used to forbid all sysctls
+#    - kernel.*
+#    allowedSysctls:
+#    - "*" # allows all sysctls. allowedSysctls is optional.

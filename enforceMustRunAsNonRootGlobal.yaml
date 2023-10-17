@@ -1,9 +1,8 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: K8sPSPPrivilegedContainer
+kind: K8sPSPAllowedUsers
 metadata:
-  name: disallow-privileged-container-global
+  name: enforce-must-run-as-non-root-global
 spec:
-  enforcementAction: deny
   match:
     excludedNamespaces: 
       - calico-apiserver
@@ -44,3 +43,6 @@ spec:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
+  parameters:
+    runAsUser:
+      rule: MustRunAsNonRoot
